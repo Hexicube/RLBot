@@ -8,7 +8,8 @@ public class StrategyController {
     public static class StrategyOutput {
         public boolean raw = false;
         
-        public final ObjInfo car, target;
+        public final ObjInfo car;
+        public ObjInfo target;
         
         public StrategyOutput(ObjInfo car, ObjInfo target) {
             this.car = car;
@@ -35,17 +36,18 @@ public class StrategyController {
     
     private static final Strategy[] stratList = new Strategy[]{
         new StrategyCloseDistance(),
-        new StrategyGoalTend()
+        new StrategyGoalTend(),
+        new StrategyPerformKickoff()
     };
     
     private static final Strategy blueOverride   = null,
                                   orangeOverride = null;
     
     public AgentOutput getBestStrategy(ObjInfo myCar, ObjInfo otherCar, ObjInfo ball, MovementHelper movement) {
-        if(!movement.canRelease(myCar)) return movement.getMovement(myCar, null);
+        if(!movement.canRelease(myCar)) return movement.getMovement(new StrategyOutput(myCar, null));
         
-        if(team == Team.BLUE   &&   blueOverride != null) return movement.getMovement(myCar,   blueOverride.handleStrategy(myCar, otherCar, ball, team));
-        if(team == Team.ORANGE && orangeOverride != null) return movement.getMovement(myCar, orangeOverride.handleStrategy(myCar, otherCar, ball, team));
+        if(team == Team.BLUE   &&   blueOverride != null) return movement.getMovement(  blueOverride.handleStrategy(myCar, otherCar, ball, team));
+        if(team == Team.ORANGE && orangeOverride != null) return movement.getMovement(orangeOverride.handleStrategy(myCar, otherCar, ball, team));
         
         if(curStrat == null || curStrat.canRelease()) {
             double bestStratAmt = 0;
@@ -59,6 +61,6 @@ public class StrategyController {
             }
             curStrat = bestStratObj;
         }
-        return movement.getMovement(myCar, curStrat.handleStrategy(myCar, otherCar, ball, team));
+        return movement.getMovement(curStrat.handleStrategy(myCar, otherCar, ball, team));
     }
 }

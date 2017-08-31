@@ -34,7 +34,7 @@ public class StrategyGoalTend extends Strategy {
         Vector finalPos;
         if(team == Team.BLUE) finalPos = GameConstants.Locations.BLUE_GOAL;
         else finalPos = GameConstants.Locations.ORANGE_GOAL;
-        return new StrategyOutput(myCar, new ObjInfo(finalPos, new CarRotation(new Vector(finalPos).invert(false).normalize(false), new Vector(0, 1, 0)), null, 0));
+        return new StrategyOutput(myCar, new ObjInfo(finalPos, new CarRotation(finalPos.invert(true).normalize(false), new Vector(0, 1, 0)), null, 0));
     }
     
     @Override

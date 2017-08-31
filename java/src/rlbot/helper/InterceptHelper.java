@@ -18,6 +18,8 @@ public class InterceptHelper {
     }
     
     public static Interception getIntercept(ObjInfo car, ObjInfo ball) {
+        //TODO: improve interception logic, or add an aerial variant
+        
         Vector relativePos = Vector.sub(ball.pos, car.pos);
         double interceptTime = relativePos.length() / (car.boost > 0 ? GameConstants.Speeds.TOP_SPEED_BOOST : GameConstants.Speeds.TOP_SPEED_NORMAL);
         Vector finalPos = new Vector(ball.pos);

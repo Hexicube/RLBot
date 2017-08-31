@@ -31,8 +31,8 @@ public class GameConstants {
     }
     
     public static class Locations {
-        public static final Vector   BLUE_GOAL = new Vector(0, 0, 0);
-        public static final Vector ORANGE_GOAL = new Vector(0, 0, 0);
+        public static final Vector   BLUE_GOAL = new Vector(0, 0,  Sizes.HALF_FIELD_LENGTH);
+        public static final Vector ORANGE_GOAL = new Vector(0, 0, -Sizes.HALF_FIELD_LENGTH);
         
         public static final double[][] LARGE_PADS = new double[][]{
             { 61, -82}, { 61, 0}, { 61, 82},

@@ -32,7 +32,7 @@ public class MovementHelper {
         return out;
     }
     
-    private StrategyOutput lastInfo;
+    private ObjInfo lastTarget;
     
     private MovementAction curAction;
     
@@ -41,27 +41,27 @@ public class MovementHelper {
         return true;
     }
     
-    public AgentOutput getMovement(ObjInfo car, StrategyOutput info) {
-        if(curAction != null) {
-            if(curAction.isDone(car)) curAction = null;
-            else return curAction.doMovement(car);
-        }
-        
-        if(info == null) info = lastInfo;
+    public AgentOutput getMovement(StrategyOutput info) {
+        if(info.target == null) info.target = lastTarget;
         else {
             if(info.raw) return ((StrategyOutputRaw)info).out;
-            lastInfo = info;
+            lastTarget = info.target;
         }
         
-        if(car.pos.y > 0.5) {
+        if(curAction != null) {
+            if(curAction.isDone(info.car)) curAction = null;
+            else return curAction.doMovement(info.car);
+        }
+        
+        if(info.car.pos.y > 0.5) {
             System.out.println("Went airborne, landing...");
-            curAction = new MovementActionLand(info.target.pos);
-            return curAction.doMovement(car);
+            curAction = new MovementActionLand(info.target == null ? info.car.pos : info.target.pos);
+            return curAction.doMovement(info.car);
         }
         
         //We've completed our movement goal, and no new movement has been given.
         //This is purely a precaution, there should always be new movement.
-        if(info == null) {
+        if(info.target == null) {
             return new AgentOutput().withAcceleration(0).withDeceleration(0).
                                      withBoost(false).withJump(false).withPitch(0).
                                      withSteer(0).withSlide(false);
