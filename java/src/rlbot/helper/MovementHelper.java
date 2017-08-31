@@ -6,7 +6,7 @@ import rlbot.strategies.StrategyController.StrategyOutputRaw;
 
 public class MovementHelper {
     public static AgentOutput getCorrectiveOutput(CarRotation current, CarRotation target) {
-        //TODO: work out what way to go
+        //TODO: work out roll/pitch/yaw values to align current with target
         //first and foremost, correct forward vector
         //second, rotate to match roof vector
         float roll = 0, yaw = 0, pitch = 0;

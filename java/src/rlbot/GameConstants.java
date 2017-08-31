@@ -7,8 +7,8 @@ public class GameConstants {
         public static final double DODGE_BONUS_FORWARD = 10;
         public static final double DODGE_LOSS_MULT = 0.5;
         
-        public static final double TOP_SPEED_BOOST  = 28.2;
-        public static final double TOP_SPEED_NORMAL = 46;
+        public static final double TOP_SPEED_BOOST  = 46;
+        public static final double TOP_SPEED_NORMAL = 28.2;
         public static final double TOP_SPEED_BALL   = 56.5;
         
         public static final double BALL_AIR_FRIC_MULT = 0.97;
@@ -40,7 +40,7 @@ public class GameConstants {
         };
         
         public static final double[][] SMALL_PADS = new double[][]{
-            //TODO
+            //TODO: list all small pads
         };
     }
 }
