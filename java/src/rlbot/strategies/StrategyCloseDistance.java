@@ -44,6 +44,7 @@ public class StrategyCloseDistance extends Strategy {
         Vector finalPos;
         if(team == Team.BLUE) finalPos = InterceptHelper.blueIntercept.ballEndPos;
         else finalPos = InterceptHelper.orangeIntercept.ballEndPos;
+        //TODO: hit side opposite enemy goal
         return new StrategyOutput(myCar, new ObjInfo(finalPos, null, null, 0));
     }
     

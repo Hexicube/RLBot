@@ -1,0 +1,2 @@
+python resetDevices.py
+pause

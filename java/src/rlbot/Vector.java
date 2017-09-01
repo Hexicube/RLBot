@@ -1,6 +1,8 @@
 package rlbot;
 
 public class Vector {
+    public static final Vector ZERO = new Vector(0,0,0);
+    
     public double x,y,z;
     
     public Vector(double x, double y, double z) {

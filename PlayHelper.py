@@ -86,14 +86,6 @@ class play_helper:
             print("Ping failed orng z value check")
             return True
 
-        # Check boost values are reset
-        if (not float(self.rwm.ReadIntFromAddress(processHandle, addressVect[0])) == 33):
-            print("Ping failed blue boost check")
-            return True
-        if (not float(self.rwm.ReadIntFromAddress(processHandle, addressVect[40])) == 33):
-            print("Ping failed orange boost check")
-            return True
-
         return False
 
     def GetValueVector(self, processHandle, addressVect):
